@@ -85,6 +85,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Log.d("PhoneMod", "started app\n");
+
         Tracker t =  getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("AddressSelectionScreenWithGoogleMap");
         t.send(new HitBuilders.AppViewBuilder().build());
@@ -330,10 +332,10 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         ArrayList<Card> cards = new ArrayList<Card>();
 
         JSONArray resArr = (JSONArray) Constants.serverInfo.get("vendors");
-        Log.d("PhoneMod", resArr.toString());
+        //Log.d("PhoneMod", resArr.toString());
         for (int i=0 ; i<resArr.length() ; i++) {
             JSONObject res = (JSONObject) resArr.get(i);
-            Log.d("PhoneMod", res.toString());
+            //Log.d("PhoneMod", res.toString());
             Card card = new RestaurantCard(this.getApplicationContext(), res);
             cards.add(card);
         }
@@ -505,6 +507,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
             sendObj.put("email", Constants.email);
             sendObj.put("addr2", addr2Val);
             sendObj.put("stripeToken", Constants.token);
+            sendObj.put("platform", "android");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -644,7 +647,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         @Override
         public void afterTextChanged(Editable ss) {
             Button continueButton = (Button) findViewById(R.id.continueButton);
-            Constants.token = ss.toString();
+            Constants.email = ss.toString();
             if (ss.toString().equals("")) {
                 continueButton.setEnabled(false);
             } else {
