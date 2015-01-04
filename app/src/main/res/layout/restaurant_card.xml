@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/restaurantLayout"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:weightSum="100"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/restaurantImage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="80"/>
+
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:background="@color/green"
+            android:text="Pizza"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal|center_vertical"/>
+
+        </LinearLayout>
+
+</RelativeLayout>

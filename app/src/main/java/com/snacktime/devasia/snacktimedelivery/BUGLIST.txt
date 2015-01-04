@@ -1,0 +1,30 @@
+FIXED BUGS:
+- fix credit card reading from prefs - DONE
+- fix crash on opening AddressEditDialog twice - DONE
+- fix crash on entering blank information in PaymentEditDialog - DONE
+- fix Add button show when back is pressed - DONE
+- disable Continue button until address and payment are valid - DONE
+- disable Checkout button until price total is valid - DONE
+- fix back button behavior on splash screen - DONE
+- don't allow checkout with 0 items - DONE
+- fix delete/add button funkiness for FoodCard - DONE
+- make splash screen icon transparent - DONE
+- put address selection in front - DONE
+- price should round to 2 sig figs - DONE
+
+BUGS:
+- calculate price from JSON
+- crash app with AlertDialog if JSON translation fails
+- add Order Details subheading for payment screen
+- fix image for Don Juan's tacos
+
+FEATURES:
+- integrate Google analytics
+- keep track of order - DONE
+- send data to server and confirm (build confirmation screen) - DONE
+
+OTHER:
+- change app icon
+- put images
+- add animations - DONE
+- change to transparent background on app logo - DONE
