@@ -153,6 +153,12 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                 pinMarker.setPosition(newLoc);
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(newLoc, 17));
 
+                Constants.lat = location[0];
+                Constants.lon = location[1];
+
+                Thread t = new RestaurantInfoFetcher();
+                t.start();
+
             } else if (intent.getStringExtra("restaurantClick") != null) {
 
                 showFoodSelection();
@@ -451,6 +457,21 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         flipper.showNext();
 
+        TextView status = (TextView) findViewById(R.id.orderStatusText);
+        status.setText("Processing...");
+
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+
+        ImageView tickImage = (ImageView) findViewById(R.id.tickImage);
+        tickImage.setVisibility(View.INVISIBLE);
+
+        ImageView crossImage = (ImageView) findViewById(R.id.crossImage);
+        crossImage.setVisibility(View.INVISIBLE);
+
+        TextView timeText = (TextView) findViewById(R.id.timeText);
+        timeText.setVisibility(View.INVISIBLE);
+
         EditText phoneText = (EditText) findViewById(R.id.phoneNumberText);
         EditText emailText = (EditText) findViewById(R.id.emailText);
 
@@ -524,8 +545,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         @Override
         public void onTextChanged(CharSequence ss, int start, int before, int count) {
-            s = ss.toString();
-            Constants.streetAddress = s;
+
         }
 
         @Override
@@ -535,6 +555,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         @Override
         public void afterTextChanged(Editable ss) {
+            Constants.streetAddress = ss.toString();
             after = System.currentTimeMillis();
             if (t == null) {
                 t = new Thread(runnable_EditTextWatcher);
@@ -572,8 +593,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         @Override
         public void onTextChanged(CharSequence ss, int start, int before, int count) {
-            s = ss.toString();
-            Constants.cityAddress = s;
+
         }
 
         @Override
@@ -583,6 +603,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         @Override
         public void afterTextChanged(Editable ss) {
+            Constants.cityAddress = ss.toString();
             after = System.currentTimeMillis();
             if (t == null) {
                 t = new Thread(runnable_EditTextWatcher);
@@ -638,8 +659,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     }
 
     public void onBackPressed() {
-
-        if (flipper.getDisplayedChild() == 1) { // exit on initial screen
+        if (flipper.getDisplayedChild() == 0) {
             super.onBackPressed();
         } else if (flipper.getDisplayedChild() == 5) { // do nothing on processing screen
 
