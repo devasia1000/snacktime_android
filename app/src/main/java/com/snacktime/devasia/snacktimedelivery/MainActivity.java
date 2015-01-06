@@ -180,10 +180,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                         "\nCredit Card: ****-****-****-" + Constants.creditCardLast4);
 
                 Button continueButton = (Button) findViewById(R.id.continueButton);
-                if (Constants.creditCardLast4 == null || Constants.token == null
-                        || Constants.streetAddress == null || Constants.cityAddress == null
-                        || Constants.phoneNumber == null || Constants.email == null
-                        || Constants.phoneNumber.equals("") || Constants.email.equals("")) {
+                if (cannotSafelyContinue()) {
                     continueButton.setEnabled(false);
                 } else {
                     continueButton.setEnabled(true);
@@ -192,10 +189,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
             } else if (intent.getStringExtra("contactInfoUpdate") != null) {
 
                 Button continueButton = (Button) findViewById(R.id.continueButton);
-                if (Constants.creditCardLast4 == null || Constants.token == null
-                        || Constants.streetAddress == null || Constants.cityAddress == null
-                        || Constants.phoneNumber == null || Constants.email == null
-                        || Constants.phoneNumber.equals("") || Constants.email.equals("")) {
+                if (cannotSafelyContinue()) {
                     continueButton.setEnabled(false);
                 } else {
                     continueButton.setEnabled(true);
@@ -405,10 +399,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         Button continueButton = (Button) findViewById(R.id.continueButton);
 
-        if (Constants.creditCardLast4 == null || Constants.token == null
-                || Constants.streetAddress == null || Constants.cityAddress == null
-                || Constants.phoneNumber == null || Constants.email == null
-                || Constants.phoneNumber.equals("") || Constants.email.equals("")) {
+        if (cannotSafelyContinue()) {
             continueButton.setEnabled(false);
         }
 
@@ -437,6 +428,9 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                     .setScale(2, BigDecimal.ROUND_HALF_UP);
             paymentText.setText("Total Cost: $" + roundedPrice.toString() +
                     "\nCredit Card: ****-****-****-" + Constants.creditCardLast4);
+            if (cannotSafelyContinue()) {
+                continueButton.setEnabled(false);
+            }
         } else {
             paymentText.setText("Credit card not found");
             continueButton.setEnabled(false);
@@ -789,5 +783,13 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
             mTrackers.put(trackerId, t);
         }
         return mTrackers.get(trackerId);
+    }
+
+    private boolean cannotSafelyContinue() {
+        return (Constants.creditCardLast4 == null || Constants.token == null
+                || Constants.streetAddress == null || Constants.cityAddress == null
+                || Constants.phoneNumber == null || Constants.email == null
+                || Constants.phoneNumber.equals("") || Constants.email.equals("")
+                || Constants.price <= 0);
     }
 }
