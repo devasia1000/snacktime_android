@@ -723,8 +723,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     /*********************************** UTIL METHODS *******************************************/
 
     private void initCreditCard() {
-        String token = Constants.prefs.getString("token", null);
-        String creditCardLast4 = Constants.prefs.getString("last4", null);
+        Constants.token = Constants.prefs.getString("token", null);
+        Constants.creditCardLast4 = Constants.prefs.getString("last4", null);
     }
 
     double[] getGPS() {
