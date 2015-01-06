@@ -17,4 +17,6 @@
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
     <color name="background_blue">#5677fc</color>
+    <color name="backgroundColor">#45484B</color>
+    <color name="cardBackgroundColor">#343739</color>
 </resources>
