@@ -445,7 +445,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
     public void showProgressScreen(View v)  {
 
-        Tracker t =  getTracker(ViewTracker.APP_TRACKER);
+        Tracker t = getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("ProgressScreen");
         t.send(new HitBuilders.AppViewBuilder().build());
 
@@ -512,7 +512,6 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     /*********************************** ALTERNATE LISTENERS **************************************/
 
     TextWatcher addr1Watcher = new TextWatcher() {
-        private String s;
         private long after;
         private Thread t;
         private Runnable runnable_EditTextWatcher = new Runnable() {
@@ -560,7 +559,6 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     };
 
     TextWatcher addr2Watcher = new TextWatcher() {
-        private String s;
         private long after;
         private Thread t;
         private Runnable runnable_EditTextWatcher = new Runnable() {
