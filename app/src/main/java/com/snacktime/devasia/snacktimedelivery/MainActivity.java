@@ -106,6 +106,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         flipper.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_out));
 
         initCreditCard();
+        addShortcutToHomescreen();
 
         Constants.phoneNumber = getPhoneNumber();
         Constants.email = getEmail();
@@ -725,6 +726,34 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     private void initCreditCard() {
         Constants.token = Constants.prefs.getString("token", null);
         Constants.creditCardLast4 = Constants.prefs.getString("last4", null);
+    }
+
+    private void addShortcutToHomescreen() {
+
+        if (Constants.prefs.getBoolean("shortcut", false)) {
+            return;
+        }
+
+        SharedPreferences.Editor edit = Constants.prefs.edit();
+        edit.putBoolean("shortcut", true);
+        edit.commit();
+
+        Intent shortcutIntent = new Intent(getApplicationContext(),
+                MainActivity.class);
+
+        shortcutIntent.setAction(Intent.ACTION_MAIN);
+
+        Intent addIntent = new Intent();
+        addIntent
+                .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Snacktime Delivery");
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                Intent.ShortcutIconResource.fromContext(getApplicationContext(),
+                        R.drawable.ic_launcher));
+
+        addIntent
+                .setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+        getApplicationContext().sendBroadcast(addIntent);
     }
 
     double[] getGPS() {
