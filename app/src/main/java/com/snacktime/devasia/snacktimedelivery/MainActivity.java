@@ -69,8 +69,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
     public enum ViewTracker {
         APP_TRACKER, // Tracker used only in this app.
-    };
-    private HashMap<ViewTracker, Tracker> mTrackers = new HashMap<ViewTracker, Tracker>();
+    }
+    private HashMap<ViewTracker, Tracker> mTrackers = new HashMap<>();
 
     private Marker pinMarker;
     private GoogleMap map;
@@ -78,7 +78,6 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     public static CardArrayAdapter mCardArrayAdapter;
     public static LocalBroadcastManager broadcastManager;
 
-    private static CardListView listView;
     private ViewFlipper flipper;
     private Menu menu;
 
@@ -347,7 +346,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         flipper.showNext();
 
         mCardArrayAdapter = new CardArrayAdapter(this, new ArrayList<Card>());
-        listView = (CardListView) this.findViewById(R.id.card_list);
+        CardListView listView = (CardListView) this.findViewById(R.id.card_list);
         if (listView != null) {
             listView.setAdapter(mCardArrayAdapter);
         }
