@@ -103,10 +103,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         flipper = (ViewFlipper) findViewById(R.id.viewflipper);
 
-        flipper.setInAnimation(AnimationUtils.loadAnimation(this,
-                android.R.anim.slide_in_left));
-        flipper.setOutAnimation(AnimationUtils.loadAnimation(this,
-                android.R.anim.slide_out_right));
+        flipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in));
+        flipper.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_out));
 
         initCreditCard();
 
