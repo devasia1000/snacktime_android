@@ -85,6 +85,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
 
         Log.d("PhoneMod", "started app\n");
+        this.setTitle("Snacktime Delivery");
 
         Tracker t =  getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("AddressSelectionScreenWithGoogleMap");
@@ -746,7 +747,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         Intent addIntent = new Intent();
         addIntent
                 .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Snacktime Delivery");
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Snacktime");
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
                 Intent.ShortcutIconResource.fromContext(getApplicationContext(),
                         R.drawable.ic_launcher));

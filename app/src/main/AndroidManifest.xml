@@ -6,12 +6,12 @@
 
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="Snacktime Delivery"
+        android:label="Snacktime"
         android:theme="@style/SnacktimeTheme" >
 
         <activity
             android:name=".MainActivity"
-            android:label="Snacktime Delivery"
+            android:label="Snacktime"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
