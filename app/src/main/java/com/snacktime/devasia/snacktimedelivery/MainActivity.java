@@ -126,14 +126,16 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                         .setScale(2, BigDecimal.ROUND_HALF_UP);
                 TextView priceText = (TextView) findViewById(R.id.priceText);
                 priceText.setText("Total: $" + roundedPrice.toString());
+                TextView paymentText = (TextView) findViewById(R.id.paymentText);
+                paymentText.setText("Total Cost: $" + roundedPrice.toString() +
+                        "\nCredit Card: ****-****-****-" + Constants.creditCardLast4);
                 mCardArrayAdapter.notifyDataSetChanged();
 
                 Button checkoutButton = (Button) findViewById(R.id.checkoutButton);
-                if (Constants.price <= 0) {
-                    checkoutButton.setEnabled(false);
-                } else {
-                    checkoutButton.setEnabled(true);
-                }
+                checkoutButton.setEnabled(Constants.price > 0);
+
+                Button continueButton = (Button) findViewById(R.id.continueButton);
+                continueButton.setEnabled(canSafelyContinue());
 
             } else if (intent.getStringExtra("addressUpdate") != null) {
 
@@ -178,20 +180,14 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                         "\nCredit Card: ****-****-****-" + Constants.creditCardLast4);
 
                 Button continueButton = (Button) findViewById(R.id.continueButton);
-                if (cannotSafelyContinue()) {
-                    continueButton.setEnabled(false);
-                } else {
-                    continueButton.setEnabled(true);
-                }
+
+                continueButton.setEnabled(canSafelyContinue());
 
             } else if (intent.getStringExtra("contactInfoUpdate") != null) {
 
                 Button continueButton = (Button) findViewById(R.id.continueButton);
-                if (cannotSafelyContinue()) {
-                    continueButton.setEnabled(false);
-                } else {
-                    continueButton.setEnabled(true);
-                }
+
+                continueButton.setEnabled(canSafelyContinue());
 
             } else if (intent.getIntExtra("orderUpdate", -1) >= 0) {
 
@@ -397,7 +393,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         Button continueButton = (Button) findViewById(R.id.continueButton);
 
-        if (cannotSafelyContinue()) {
+        if (!canSafelyContinue()) {
             continueButton.setEnabled(false);
         }
 
@@ -426,7 +422,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                     .setScale(2, BigDecimal.ROUND_HALF_UP);
             paymentText.setText("Total Cost: $" + roundedPrice.toString() +
                     "\nCredit Card: ****-****-****-" + Constants.creditCardLast4);
-            if (cannotSafelyContinue()) {
+
+            if (!canSafelyContinue()) {
                 continueButton.setEnabled(false);
             }
         } else {
@@ -781,11 +778,11 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         return mTrackers.get(trackerId);
     }
 
-    private boolean cannotSafelyContinue() {
-        return (Constants.creditCardLast4 == null || Constants.token == null
+    private boolean canSafelyContinue() {
+        return (!(Constants.creditCardLast4 == null || Constants.token == null
                 || Constants.streetAddress == null || Constants.cityAddress == null
                 || Constants.phoneNumber == null || Constants.email == null
                 || Constants.phoneNumber.equals("") || Constants.email.equals("")
-                || Constants.price <= 0);
+                || Constants.price <= 0));
     }
 }
