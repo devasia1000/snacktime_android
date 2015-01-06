@@ -70,7 +70,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="14"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="(C) Devasia Manuel 2014"
+                android:text="© Devasia Manuel 2014"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-thin"
                 android:textSize="14dp" />
@@ -281,7 +281,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="10"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Contact: "
+                android:text="Contact"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -313,6 +313,8 @@
 
                     <EditText
                         android:id="@+id/phoneNumberText"
+                        android:hint="We need your number!"
+                        android:textColorHint="#55585B"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="65"
@@ -340,6 +342,8 @@
 
                     <EditText
                         android:id="@+id/emailText"
+                        android:hint="We need your email!"
+                        android:textColorHint="#55585B"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="65"
@@ -352,10 +356,12 @@
 
             <TextView
                 android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-20dp"
                 android:layout_height="0dp"
                 android:layout_weight="12"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Delivery: "
+                android:text="Delivery"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -371,10 +377,11 @@
 
             <TextView
                 android:layout_width="match_parent"
+                android:layout_marginBottom="-20dp"
                 android:layout_height="0dp"
                 android:layout_weight="10"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Payment: "
+                android:text="Payment"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -418,12 +425,13 @@
 
             <Button
                 android:id="@+id/continueButton"
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:enabled="true"
                 android:onClick="showProgressScreen"
-                android:text="Continue" />
+                android:text="Confirm" />
 
         </LinearLayout>
 
