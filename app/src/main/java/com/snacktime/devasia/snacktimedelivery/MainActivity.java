@@ -383,6 +383,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
     public void showCheckoutScreen(View v) {
 
+
+
         Tracker t =  getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("CheckoutScreen");
         t.send(new HitBuilders.AppViewBuilder().build());
