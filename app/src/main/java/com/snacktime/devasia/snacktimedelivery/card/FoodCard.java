@@ -66,9 +66,6 @@ public class FoodCard extends Card {
         ImageView deleteButton = (ImageView) view.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(deleteHandler);
 
-        /*WebView webView = (WebView) view.findViewById(R.id.webView);
-        webView.loadUrl("http://cbsmiami.files.wordpress.com/2013/04/ernesto-tacos.jpg");*/
-
         // Create listeners for radio buttons
         RadioButton foodButton0 = (RadioButton) view.findViewById(R.id.radio1);
         RadioButton foodButton1 = (RadioButton) view.findViewById(R.id.radio2);

@@ -23,16 +23,6 @@
             android:orientation="vertical"
             android:weightSum="100">
 
-            <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="30"-->
-            <!--android:gravity="center_horizontal|center_vertical"-->
-            <!--android:text="Welcome to Snacktime!"-->
-            <!--android:textColor="#ffffff"-->
-            <!--android:textSize="25dp"-->
-            <!--android:fontFamily="sans-serif-thin" />-->
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
