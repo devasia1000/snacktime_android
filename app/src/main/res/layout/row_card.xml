@@ -56,14 +56,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Flavor: "
+        android:text="Flavor"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/flavorGroup"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:weightSum="100">
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Drink: "
+        android:text="Drink"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
