@@ -123,14 +123,21 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
             if (intent.getStringExtra("priceUpdate") != null) {
 
-                Constants.price = (double) mCardArrayAdapter.getCount() * 9.95;
+                Constants.price = 0;
+                for (int i=0 ; i<mCardArrayAdapter.getCount() ; i++) {
+                    FoodCard card = (FoodCard) mCardArrayAdapter.getItem(i);
+                    Constants.price += card.getPrice();
+                }
+
                 BigDecimal roundedPrice = new BigDecimal(Constants.price)
                         .setScale(2, BigDecimal.ROUND_HALF_UP);
+
                 TextView priceText = (TextView) findViewById(R.id.priceText);
                 priceText.setText("Total: $" + roundedPrice.toString());
                 TextView paymentText = (TextView) findViewById(R.id.paymentText);
                 paymentText.setText("Total Cost: $" + roundedPrice.toString() +
                         "\nCredit Card: ****-****-****-" + Constants.creditCardLast4);
+
                 mCardArrayAdapter.notifyDataSetChanged();
 
                 Button checkoutButton = (Button) findViewById(R.id.checkoutButton);
@@ -394,6 +401,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         card.setOnSwipeListener(swipeHandler);
         mCardArrayAdapter.add(card);
         mCardArrayAdapter.notifyDataSetChanged();
+
         MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
     }
 

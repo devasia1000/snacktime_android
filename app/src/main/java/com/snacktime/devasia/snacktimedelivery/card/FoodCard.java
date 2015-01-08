@@ -35,6 +35,8 @@ public class FoodCard extends Card {
 
     public int cardTag = -1;
 
+    private double price;
+
     public FoodCard(Context context, JSONObject foodOptions, JSONObject drinkOptions) {
         super(context, R.layout.row_card);
 
@@ -45,14 +47,21 @@ public class FoodCard extends Card {
         drinkIdx = 0;
 
         try {
+            price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
+                    .getString("price"))/100;
             flavorName = foodOptions.getJSONObject("0").getString("cart_name");
             drinkName = drinkOptions.getString("0");
         } catch (JSONException e) {
             e.printStackTrace();
+            System.exit(0); // failing to parse the price is a critical fault, we should end the app
         }
 
         cardTag = Constants.cardTag;
         Constants.cardTag++;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public void setupInnerViewElements(ViewGroup parent, View view) {
@@ -130,7 +139,10 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             flavorIdx = 0;
-                            flavorName = foodOptions.getJSONObject("0").getString("cart_name");
+                            flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
+                            price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("price"))/100;
+                            Log.d("PhoneMod", foodOptions.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -144,7 +156,9 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             flavorIdx = 1;
-                            flavorName = foodOptions.getJSONObject("1").getString("cart_name");
+                            flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
+                            price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("price"))/100;
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -158,7 +172,9 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             flavorIdx = 2;
-                            flavorName = foodOptions.getJSONObject("2").getString("cart_name");
+                            flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
+                            price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("price"))/100;
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -172,7 +188,9 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             flavorIdx = 3;
-                            flavorName = foodOptions.getJSONObject("3").getString("cart_name");
+                            flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
+                            price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("price"))/100;
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -186,7 +204,7 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             drinkIdx = 0;
-                            drinkName = drinkOptions.getString("0");
+                            drinkName = drinkOptions.getString(drinkIdx + "");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -200,7 +218,7 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             drinkIdx = 1;
-                            drinkName = drinkOptions.getString("1");
+                            drinkName = drinkOptions.getString(drinkIdx + "");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -214,7 +232,7 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             drinkIdx = 2;
-                            drinkName = drinkOptions.getString("2");
+                            drinkName = drinkOptions.getString(drinkIdx + "");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -228,7 +246,7 @@ public class FoodCard extends Card {
                     public void onClick(View view) {
                         try {
                             drinkIdx = 3;
-                            drinkName = drinkOptions.getString("3");
+                            drinkName = drinkOptions.getString(drinkIdx + "");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
