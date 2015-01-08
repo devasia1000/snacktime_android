@@ -16,6 +16,7 @@ import com.snacktime.devasia.snacktimedelivery.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import it.gmariotti.cardslib.library.internal.Card;
 
@@ -32,6 +33,7 @@ public class FoodCard extends Card {
 
     public String flavorName;
     public String drinkName;
+    public String ingredients;
 
     public int cardTag = -1;
 
@@ -49,6 +51,8 @@ public class FoodCard extends Card {
         try {
             price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
                     .getString("price"))/100;
+            ingredients = foodOptions.getJSONObject(flavorIdx + "")
+                    .getString("desc");
             flavorName = foodOptions.getJSONObject("0").getString("cart_name");
             drinkName = drinkOptions.getString("0");
         } catch (JSONException e) {
@@ -71,6 +75,9 @@ public class FoodCard extends Card {
 
         final TextView title = (TextView) view.findViewById(R.id.card_main_inner_simple_title);
         title.setText(flavorName + " + " + drinkName);
+
+        final TextView ingredientText = (TextView) view.findViewById(R.id.ingredientText);
+        ingredientText.setText("Ingredients: " + ingredients);
 
         ImageView deleteButton = (ImageView) view.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(deleteHandler);
@@ -142,11 +149,14 @@ public class FoodCard extends Card {
                             flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
                             price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
                                     .getString("price"))/100;
+                            ingredients = foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("desc");
                             Log.d("PhoneMod", foodOptions.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         title.setText(flavorName + " + " + drinkName);
+                        ingredientText.setText("Ingredients: " + ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -159,10 +169,13 @@ public class FoodCard extends Card {
                             flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
                             price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
                                     .getString("price"))/100;
+                            ingredients = foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("desc");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         title.setText(flavorName + " + " + drinkName);
+                        ingredientText.setText("Ingredients: " + ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -175,10 +188,13 @@ public class FoodCard extends Card {
                             flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
                             price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
                                     .getString("price"))/100;
+                            ingredients = foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("desc");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         title.setText(flavorName + " + " + drinkName);
+                        ingredientText.setText("Ingredients: " + ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -191,10 +207,13 @@ public class FoodCard extends Card {
                             flavorName = foodOptions.getJSONObject(flavorIdx + "").getString("cart_name");
                             price = Double.parseDouble(foodOptions.getJSONObject(flavorIdx + "")
                                     .getString("price"))/100;
+                            ingredients = foodOptions.getJSONObject(flavorIdx + "")
+                                    .getString("desc");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         title.setText(flavorName + " + " + drinkName);
+                        ingredientText.setText("Ingredients: " + ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
