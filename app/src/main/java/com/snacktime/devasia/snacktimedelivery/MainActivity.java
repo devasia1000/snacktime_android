@@ -338,7 +338,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         CardGridView cardGridView = (CardGridView) findViewById(R.id.cardGrid);
         cardGridView.setVisibility(View.VISIBLE);
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        ArrayList<Card> cards = new ArrayList<>();
 
         JSONArray resArr;
         try {

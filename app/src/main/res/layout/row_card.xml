@@ -41,6 +41,17 @@
         </LinearLayout>
 
     <TextView
+        android:id="@+id/card_main_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ingredients go here lololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololol"
+        android:fontFamily="sans-serif-thin"
+        android:maxLines="2"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="-15dp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
         android:id="@+id/card_main_inner_secondary_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
