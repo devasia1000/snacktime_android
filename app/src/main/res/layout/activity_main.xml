@@ -8,36 +8,36 @@
 
     <ViewFlipper
         android:id="@+id/viewflipper"
-        android:background="@color/backgroundColor"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="@color/backgroundColor">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:background="@color/backgroundColor"
             android:orientation="vertical"
             android:weightSum="100">
 
             <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="30"-->
-                <!--android:gravity="center_horizontal|center_vertical"-->
-                <!--android:text="Welcome to Snacktime!"-->
-                <!--android:textColor="#ffffff"-->
-                <!--android:textSize="25dp"-->
-                <!--android:fontFamily="sans-serif-thin" />-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="30"-->
+            <!--android:gravity="center_horizontal|center_vertical"-->
+            <!--android:text="Welcome to Snacktime!"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:textSize="25dp"-->
+            <!--android:fontFamily="sans-serif-thin" />-->
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="60"
                 android:src="@drawable/logo2" />
 
@@ -45,9 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="10"
+                android:fontFamily="sans-serif-thin"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Food on demand."
-                android:fontFamily="sans-serif-thin"
                 android:textColor="@color/white"
                 android:textSize="26dp" />
 
@@ -71,10 +71,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="14"
+                android:fontFamily="sans-serif-thin"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="© Devasia Manuel 2014"
                 android:textColor="@color/white"
-                android:fontFamily="sans-serif-thin"
                 android:textSize="14dp" />
 
         </LinearLayout>
@@ -82,11 +82,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:background="@color/backgroundColor"
             android:orientation="vertical"
             android:weightSum="100">
 
@@ -178,7 +178,7 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="10"
-                android:onClick="showRestaurantSelection"
+                android:onClick="getRestaurantInfo"
                 android:text="Continue" />
 
         </LinearLayout>
@@ -186,11 +186,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:background="@color/backgroundColor"
             android:orientation="vertical"
             android:weightSum="100">
 
@@ -198,33 +198,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="15"
-                android:textSize="20dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="I want..."
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="20dp" />
 
-            <it.gmariotti.cardslib.library.view.CardGridView
-                android:id="@+id/cardGrid"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="85"
-                android:columnWidth="150dp"
-                android:horizontalSpacing="0dp"
-                android:numColumns="auto_fit"
-                android:stretchMode="columnWidth"
-                android:verticalSpacing="5dp"
-                card:list_card_layout_resourceID="@layout/list_card_layout" />
+                android:layout_weight="85">
+
+                <ProgressBar
+                    android:id="@+id/restaurantProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal|center_vertical"/>
+
+                <it.gmariotti.cardslib.library.view.CardGridView
+                    android:id="@+id/cardGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnWidth="150dp"
+                    android:horizontalSpacing="0dp"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="5dp"
+                    card:list_card_layout_resourceID="@layout/list_card_layout" />
+
+            </FrameLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:background="@color/backgroundColor"
             android:orientation="vertical"
             android:weightSum="100"
             tools:context=".MainActivity">
@@ -273,12 +285,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="10"
+            android:background="@color/backgroundColor"
             android:orientation="vertical"
             android:weightSum="100">
 
@@ -319,13 +331,13 @@
 
                     <EditText
                         android:id="@+id/phoneNumberText"
-                        android:hint="We need your number!"
-                        android:textColorHint="#55585B"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="65"
+                        android:hint="We need your number!"
                         android:inputType="number"
                         android:textColor="@color/white"
+                        android:textColorHint="#55585B"
                         android:textSize="16dp" />
 
                 </LinearLayout>
@@ -348,12 +360,12 @@
 
                     <EditText
                         android:id="@+id/emailText"
-                        android:hint="We need your email!"
-                        android:textColorHint="#55585B"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="65"
+                        android:hint="We need your email!"
                         android:textColor="@color/white"
+                        android:textColorHint="#55585B"
                         android:textSize="16dp" />
 
                 </LinearLayout>
@@ -362,9 +374,9 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="-20dp"
                 android:layout_height="0dp"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="12"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Delivery"
@@ -383,8 +395,8 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_marginBottom="-20dp"
                 android:layout_height="0dp"
+                android:layout_marginBottom="-20dp"
                 android:layout_weight="10"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Payment"
@@ -431,10 +443,10 @@
 
             <Button
                 android:id="@+id/continueButton"
-                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="20dp"
                 android:enabled="true"
                 android:onClick="showProgressScreen"
                 android:text="Confirm" />
@@ -444,11 +456,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:background="@color/backgroundColor"
             android:orientation="vertical"
             android:weightSum="100">
 

@@ -50,6 +50,7 @@ import com.snacktime.devasia.snacktimedelivery.util.ReverseGeocoding;
 import com.snacktime.devasia.snacktimedelivery.network.OrderSender;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
@@ -146,9 +147,6 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                 address1.setText(Constants.streetAddress);
                 address2.setText(Constants.cityAddress);
 
-                Thread t = new RestaurantInfoFetcher();
-                t.start();
-
             } else if (intent.getDoubleArrayExtra("pinUpdate") != null) {
 
                 double[] location = intent.getDoubleArrayExtra("pinUpdate");
@@ -159,8 +157,9 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                 Constants.lat = location[0];
                 Constants.lon = location[1];
 
-                Thread t = new RestaurantInfoFetcher();
-                t.start();
+            } else if (intent.getStringExtra("restaurantInfoUpdate") != null) {
+
+                showRestaurantSelection();
 
             } else if (intent.getStringExtra("restaurantClick") != null) {
 
@@ -308,25 +307,42 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         addr2Text.addTextChangedListener(addr2Watcher);
     }
 
-    public void showRestaurantSelection(View v) throws Exception {
+    public void getRestaurantInfo(View v) {
+        flipper.showNext();
 
         Tracker t =  getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("RestaurantSelectionScreen");
         t.send(new HitBuilders.AppViewBuilder().build());
 
-        flipper.showNext();
+        ProgressBar restaurantProgress = (ProgressBar) findViewById(R.id.restaurantProgress);
+        restaurantProgress.setVisibility(View.VISIBLE);
 
-        while (Constants.serverInfo == null); // block until network request is finished
+        CardGridView cardGridView = (CardGridView) findViewById(R.id.cardGrid);
+        cardGridView.setVisibility(View.INVISIBLE);
+
+        new RestaurantInfoFetcher().start();
+    }
+
+    public void showRestaurantSelection() {
+
+        ProgressBar restaurantProgress = (ProgressBar) findViewById(R.id.restaurantProgress);
+        restaurantProgress.setVisibility(View.INVISIBLE);
+
+        CardGridView cardGridView = (CardGridView) findViewById(R.id.cardGrid);
+        cardGridView.setVisibility(View.VISIBLE);
 
         ArrayList<Card> cards = new ArrayList<Card>();
 
-        JSONArray resArr = (JSONArray) Constants.serverInfo.get("vendors");
-        //Log.d("PhoneMod", resArr.toString());
-        for (int i=0 ; i<resArr.length() ; i++) {
-            JSONObject res = (JSONObject) resArr.get(i);
-            //Log.d("PhoneMod", res.toString());
-            Card card = new RestaurantCard(this.getApplicationContext(), res);
-            cards.add(card);
+        JSONArray resArr;
+        try {
+            resArr = (JSONArray) Constants.serverInfo.get("vendors");
+            for (int i=0 ; i<resArr.length() ; i++) {
+                JSONObject res = (JSONObject) resArr.get(i);
+                Card card = new RestaurantCard(this.getApplicationContext(), res);
+                cards.add(card);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         CardGridArrayAdapter mCardArrayAdapter = new CardGridArrayAdapter(this.getApplicationContext(), cards);

@@ -1,8 +1,10 @@
 package com.snacktime.devasia.snacktimedelivery.network;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.snacktime.devasia.snacktimedelivery.Constants;
+import com.snacktime.devasia.snacktimedelivery.MainActivity;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -65,6 +67,9 @@ public class RestaurantInfoFetcher extends Thread {
         } catch (Exception e) {
             Log.d("PhoneMod", e.toString());
         }
+
+        MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                .putExtra("restaurantInfoUpdate", ""));
 
     }
 }

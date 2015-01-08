@@ -24,7 +24,7 @@
             android:layout_height="0dp"
             android:layout_weight="100"
             android:background="#E55755"
-            android:text="Pizza"
+            android:text="Text"
             android:textSize="20dp"
             android:textColor="@color/white"
             android:gravity="center_horizontal|center_vertical"/>
