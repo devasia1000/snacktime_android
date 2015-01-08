@@ -17,7 +17,7 @@
             android:id="@+id/card_main_inner_simple_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="85"
+            android:layout_weight="90"
             android:maxLines="2"
             android:text="Title"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -27,7 +27,7 @@
             android:id="@+id/deleteButton"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_weight="15"
+            android:layout_weight="10"
             android:gravity="center_vertical|center_horizontal"
             android:src="@drawable/ic_menu_trash"/>
 
@@ -45,7 +45,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
         android:textSize="15dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="-12dp"
+        android:layout_marginBottom="25dp"
         android:maxLines="2"
         android:text="Sample ingredients"
         android:textAppearance="?android:attr/textAppearanceMedium" />

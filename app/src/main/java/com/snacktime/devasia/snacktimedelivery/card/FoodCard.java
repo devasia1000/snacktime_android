@@ -74,10 +74,10 @@ public class FoodCard extends Card {
         idText.setText(cardTag + "");
 
         final TextView title = (TextView) view.findViewById(R.id.card_main_inner_simple_title);
-        title.setText(flavorName + " + " + drinkName);
+        title.setText(flavorName);
 
         final TextView ingredientText = (TextView) view.findViewById(R.id.ingredientText);
-        ingredientText.setText("Ingredients: " + ingredients);
+        ingredientText.setText(ingredients);
 
         ImageView deleteButton = (ImageView) view.findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(deleteHandler);
@@ -155,8 +155,8 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
-                        ingredientText.setText("Ingredients: " + ingredients);
+                        title.setText(flavorName);
+                        ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -174,8 +174,8 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
-                        ingredientText.setText("Ingredients: " + ingredients);
+                        title.setText(flavorName);
+                        ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -193,8 +193,8 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
-                        ingredientText.setText("Ingredients: " + ingredients);
+                        title.setText(flavorName);
+                        ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -212,8 +212,8 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
-                        ingredientText.setText("Ingredients: " + ingredients);
+                        title.setText(flavorName);
+                        ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -227,7 +227,7 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
+                        title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -241,7 +241,7 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
+                        title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -255,7 +255,7 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
+                        title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
@@ -269,7 +269,7 @@ public class FoodCard extends Card {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        title.setText(flavorName + " + " + drinkName);
+                        title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
                     }
                 });
