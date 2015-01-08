@@ -4,138 +4,153 @@
     android:layout_height="match_parent"
     android:background="@color/cardBackgroundColor"
     android:orientation="vertical"
-    android:padding="10dp" >
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:paddingBottom="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
-        android:weightSum="100" >
+        android:weightSum="100">
 
         <TextView
             android:id="@+id/card_main_inner_simple_title"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_weight="85"
+            android:maxLines="2"
             android:text="Title"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_weight="100"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
 
         <ImageView
-            android:layout_width="0dp"
             android:id="@+id/deleteButton"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
             android:layout_weight="15"
-            android:src="@drawable/ic_menu_trash"
             android:gravity="center_vertical|center_horizontal"
-            android:visibility="gone"/>
+            android:src="@drawable/ic_menu_trash"/>
 
         <TextView
+            android:id="@+id/idTag"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:id="@+id/idTag"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/card_main_ingredients"
+        android:id="@+id/ingredientText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ingredients go here lololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololollololol"
         android:fontFamily="sans-serif-thin"
+        android:textSize="15dp"
+        android:layout_marginBottom="10dp"
         android:maxLines="2"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="-15dp"
-        android:layout_marginBottom="20dp"/>
+        android:text="Sample ingredients"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/card_main_inner_secondary_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="Flavor: "
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginBottom="10dp"/>
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
         android:id="@+id/flavorGroup"
-        android:weightSum="100"
-        android:gravity="center_vertical">
-        <RadioButton android:id="@+id/radio1"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <RadioButton
+            android:id="@+id/radio1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
             android:text="Beef"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse"/>
-        <RadioButton android:id="@+id/radio2"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textSize="10dp" />
+
+        <RadioButton
+            android:id="@+id/radio2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
             android:text="Chicken"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
-        <RadioButton android:id="@+id/radio3"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textSize="10dp" />
+
+        <RadioButton
+            android:id="@+id/radio3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
             android:text="Steak"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
-        <RadioButton android:id="@+id/radio4"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textSize="10dp" />
+
+        <RadioButton
+            android:id="@+id/radio4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
             android:text="Veggie"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textSize="10dp" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/card_main_inner_secondary_title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="Drink: "
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginBottom="10dp"/>
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
         android:id="@+id/drinkGroup"
-        android:weightSum="100"
-        android:gravity="center_vertical">
-        <RadioButton android:id="@+id/radio5"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <RadioButton
+            android:id="@+id/radio5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
-            android:text="Coke" />
-        <RadioButton android:id="@+id/radio6"
+            android:text="Coke"
+            android:textSize="10dp" />
+
+        <RadioButton
+            android:id="@+id/radio6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
-            android:text="Sprite" />
-        <RadioButton android:id="@+id/radio7"
+            android:text="Sprite"
+            android:textSize="10dp" />
+
+        <RadioButton
+            android:id="@+id/radio7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
-            android:text="Water" />
-        <RadioButton android:id="@+id/radio8"
+            android:text="Water"
+            android:textSize="10dp" />
+
+        <RadioButton
+            android:id="@+id/radio8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:textSize="10dp"
-            android:text="Tea" />
+            android:text="Tea"
+            android:textSize="10dp" />
     </RadioGroup>
 
 </LinearLayout>

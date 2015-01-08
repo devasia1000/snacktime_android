@@ -397,8 +397,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         card.setInnerLayout(R.layout.row_card);
         card.setShadow(true);
         card.setCardElevation(100);
-        card.setSwipeable(true);
-        card.setOnSwipeListener(swipeHandler);
+        //card.setSwipeable(true);
+        //card.setOnSwipeListener(swipeHandler);
         mCardArrayAdapter.add(card);
         mCardArrayAdapter.notifyDataSetChanged();
 
@@ -728,8 +728,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
             card.setInnerLayout(R.layout.row_card);
             card.setShadow(true);
             card.setCardElevation(100);
-            card.setSwipeable(true);
-            card.setOnSwipeListener(swipeHandler);
+            //card.setSwipeable(true);
+            //card.setOnSwipeListener(swipeHandler);
 
             mCardArrayAdapter.add(card);
             mCardArrayAdapter.notifyDataSetChanged();
