@@ -264,6 +264,15 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                 paymentText.setVisibility(View.INVISIBLE);
                 paymentProgress.setVisibility(View.VISIBLE);
 
+            } else if (intent.getStringExtra("cardFailed") != null) {
+
+                ProgressBar paymentProgress = (ProgressBar) findViewById(R.id.paymentUpdateProgres);
+                TextView paymentText = (TextView) findViewById(R.id.paymentText);
+
+                paymentText.setVisibility(View.VISIBLE);
+                paymentProgress.setVisibility(View.INVISIBLE);
+
+                paymentText.setText("Credit card invalid");
             }
         }
     };

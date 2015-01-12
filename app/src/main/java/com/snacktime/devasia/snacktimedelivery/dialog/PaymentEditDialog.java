@@ -135,11 +135,15 @@ public class PaymentEditDialog extends DialogFragment {
                                                 emailCopy));
                                         t.start();
                                     } catch (Exception e) {
+                                        MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                                                .putExtra("cardFailed", ""));
                                         e.printStackTrace();
                                     }
                                 }
 
                                 public void onError(Exception error) {
+                                    MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                                            .putExtra("cardFailed", ""));
                                     error.printStackTrace();
                                 }
                             }
