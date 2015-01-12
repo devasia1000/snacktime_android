@@ -3,9 +3,11 @@ package com.snacktime.devasia.snacktimedelivery;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -356,6 +358,20 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         CardGridView gridView = (CardGridView) findViewById(R.id.cardGrid);
         if (gridView != null) {
             gridView.setAdapter(mCardArrayAdapter);
+        }
+
+        if (mCardArrayAdapter.getCount() == 0) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("No restaurants available")
+                    .setMessage("Please choose a new location")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            flipper.showPrevious();
+                        }
+                    })
+                    .show();
         }
     }
 
