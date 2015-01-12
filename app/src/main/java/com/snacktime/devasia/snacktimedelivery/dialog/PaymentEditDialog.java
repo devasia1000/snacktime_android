@@ -120,7 +120,7 @@ public class PaymentEditDialog extends DialogFragment {
 
                     Stripe stripe = null;
                     try {
-                        stripe = new Stripe(Constants.stripeApiKeyTest);
+                        stripe = new Stripe(Constants.stripeApiKeyLive);
                     } catch (AuthenticationException e) {
                         e.printStackTrace();
                     }

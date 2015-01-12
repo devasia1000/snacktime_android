@@ -31,7 +31,8 @@ public class OrderSender implements Runnable {
     public void run() {
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/test_charge");
+        //HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/test_charge"); // Test URL
+        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/prod_charge"); // Production URL
         httppost.setHeader("Content-type", "application/json");
 
         InputStream inputStream = null;

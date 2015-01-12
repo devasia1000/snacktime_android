@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Constants {
 
-    public static String stripeApiKeyTest = "pk_test_2oeMglsQk0aDi4myNL6qTepH";
+    //public static String stripeApiKeyTest = "pk_test_2oeMglsQk0aDi4myNL6qTepH";
     public static String stripeApiKeyLive = "pk_live_rSxCqBSrrsTeA7IRFTDFthpB";
 
     public static String token;

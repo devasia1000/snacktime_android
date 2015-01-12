@@ -38,7 +38,8 @@ public class TokenFetcher implements Runnable {
     public void run() {
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/test_token");
+        //HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/test_token"); // Test token
+        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/prod_token"); // Prod token
         httppost.setHeader("Content-type", "application/x-www-form-urlencoded");
 
         InputStream inputStream = null;

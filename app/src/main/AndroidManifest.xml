@@ -21,8 +21,8 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyB4GX9DsLC0hQaZjCw3vaCp_5vEdckTgpM"/> <!-- Release key -->
             android:value="AIzaSyCoHgf9fh7Z6o7R0XzXLEXijOVCuQwYcHU"/> <!-- Debug key -->
+            <!-- android:value="AIzaSyB4GX9DsLC0hQaZjCw3vaCp_5vEdckTgpM"/>-->  <!-- Release key -->
             <!--android:value="AIzaSyAij8v8gSdDaJpP7Qa5NFLI1VW11zbPoKE"/>--> <!-- secret key -->
 
         <meta-data

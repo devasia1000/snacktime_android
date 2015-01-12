@@ -28,7 +28,9 @@ public class RestaurantInfoFetcher extends Thread {
 
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/feed");
+        // HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/feed"); // Test feed
+        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/prod_feed"); // Prod feed
+
         httppost.setHeader("Content-type", "application/json");
 
         InputStream inputStream = null;
