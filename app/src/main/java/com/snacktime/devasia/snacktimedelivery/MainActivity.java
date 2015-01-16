@@ -73,6 +73,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     public enum ViewTracker {
         APP_TRACKER, // Tracker used only in this app.
     }
+
     private HashMap<ViewTracker, Tracker> mTrackers = new HashMap<>();
 
     private Marker pinMarker;
@@ -90,7 +91,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         Log.d("PhoneMod", "started app\n");
         this.setTitle("Snacktime Delivery");
 
-        Tracker t =  getTracker(ViewTracker.APP_TRACKER);
+        Tracker t = getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("AddressSelectionScreenWithGoogleMap");
         t.send(new HitBuilders.AppViewBuilder().build());
 
@@ -109,14 +110,20 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         flipper.setInAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in));
         flipper.setOutAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_out));
 
-        initCreditCard();
-        addShortcutToHomescreen();
-
         Constants.phoneNumber = getPhoneNumber();
         Constants.email = getEmail();
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        new Thread(new Runnable() {
+            public void run() {
+                initCreditCard();
+                initLocation();
+                addShortcutToHomescreen();
+            }
+        }).start();
+
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -126,7 +133,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
             if (intent.getStringExtra("priceUpdate") != null) {
 
                 Constants.price = 0;
-                for (int i=0 ; i<mCardArrayAdapter.getCount() ; i++) {
+                for (int i = 0; i < mCardArrayAdapter.getCount(); i++) {
                     FoodCard card = (FoodCard) mCardArrayAdapter.getItem(i);
                     Constants.price += card.getPrice();
                 }
@@ -273,6 +280,11 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                 paymentProgress.setVisibility(View.INVISIBLE);
 
                 paymentText.setText("Credit card invalid");
+
+                SharedPreferences.Editor editor = Constants.prefs.edit();
+                editor.remove("token");
+                editor.remove("last4");
+                editor.commit();
             }
         }
     };
@@ -285,12 +297,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setMapToolbarEnabled(false);
 
-        final double[] location = getGPS();
-
-        Constants.lat = location[0];
-        Constants.lon = location[1];
-
-        final LatLng curLocation = new LatLng(location[0], location[1]);
+        final LatLng curLocation = new LatLng(Constants.lat, Constants.lon);
         pinMarker = map.addMarker(new MarkerOptions()
                 .position(curLocation));
         pinMarker.setDraggable(true);
@@ -298,25 +305,6 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         pinMarker.showInfoWindow();
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curLocation, 17));
         map.setOnMarkerDragListener(new MarkerDragManager());
-
-        new Thread(new Runnable() {
-            public void run() {
-                ReverseGeocoding geocoding = new ReverseGeocoding();
-                geocoding.getAddress(location[0], location[1]);
-
-                if (geocoding.getAddress2().equals("")) {
-                    Constants.streetAddress = geocoding.getAddress1();
-                } else {
-                    Constants.streetAddress = geocoding.getAddress1()
-                            + ", " + geocoding.getAddress2();
-                }
-                Constants.cityAddress = geocoding.getCity() + ", " + geocoding.getState() +
-                        " - " + geocoding.getPIN();
-
-                MainActivity.broadcastManager.sendBroadcast(new Intent("event")
-                        .putExtra("addressUpdate", ""));
-            }
-        }).start();
 
         final TextView addr1Text = (TextView) findViewById(R.id.addressInputStreet);
         final TextView addr2Text = (TextView) findViewById(R.id.addressInputCity);
@@ -328,7 +316,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     public void getRestaurantInfo(View v) {
         flipper.showNext();
 
-        Tracker t =  getTracker(ViewTracker.APP_TRACKER);
+        Tracker t = getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("RestaurantSelectionScreen");
         t.send(new HitBuilders.AppViewBuilder().build());
 
@@ -354,7 +342,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         JSONArray resArr;
         try {
             resArr = (JSONArray) Constants.serverInfo.get("vendors");
-            for (int i=0 ; i<resArr.length() ; i++) {
+            for (int i = 0; i < resArr.length(); i++) {
                 JSONObject res = (JSONObject) resArr.get(i);
                 Card card = new RestaurantCard(this.getApplicationContext(), res);
                 cards.add(card);
@@ -386,7 +374,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
     public void showFoodSelection() {
 
-        Tracker t =  getTracker(ViewTracker.APP_TRACKER);
+        Tracker t = getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("FoodSelectionScreen");
         t.send(new HitBuilders.AppViewBuilder().build());
 
@@ -406,8 +394,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         try {
             JSONArray arr = Constants.serverInfo.getJSONArray("vendors");
-            for (int i=0 ; i<arr.length() ; i++) {
-                JSONObject res =  (JSONObject) arr.get(i);
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject res = (JSONObject) arr.get(i);
                 if (Constants.restaurantIdx == res.getInt("vendor_id")) {
                     drinkChoice = res.getJSONObject("addons")
                             .getJSONObject("0").getJSONObject("choices");
@@ -432,9 +420,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
     public void showCheckoutScreen(View v) {
 
-
-
-        Tracker t =  getTracker(ViewTracker.APP_TRACKER);
+        Tracker t = getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("CheckoutScreen");
         t.send(new HitBuilders.AppViewBuilder().build());
 
@@ -492,7 +478,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         emailText.setText(Constants.email);
     }
 
-    public void showProgressScreen(View v)  {
+    public void showProgressScreen(View v) {
 
         Tracker t = getTracker(ViewTracker.APP_TRACKER);
         t.setScreenName("ProgressScreen");
@@ -532,7 +518,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
             sendObj.put("addr1", addr1Val);
 
             JSONArray orderArr = new JSONArray();
-            for (int i=0 ; i<mCardArrayAdapter.getCount(); i++) {
+            for (int i = 0; i < mCardArrayAdapter.getCount(); i++) {
                 FoodCard card = (FoodCard) mCardArrayAdapter.getItem(i);
                 JSONObject orderObj = new JSONObject();
                 orderObj.put("type", card.flavorIdx);
@@ -558,7 +544,9 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         t1.start();
     }
 
-    /*********************************** ALTERNATE LISTENERS **************************************/
+    /**
+     * ******************************** ALTERNATE LISTENERS *************************************
+     */
 
     TextWatcher addr1Watcher = new TextWatcher() {
         private long after;
@@ -657,10 +645,12 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     TextWatcher phoneNumberWatcher = new TextWatcher() {
 
         @Override
-        public void onTextChanged(CharSequence ss, int start, int before, int count) {}
+        public void onTextChanged(CharSequence ss, int start, int before, int count) {
+        }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
         public void afterTextChanged(Editable ss) {
@@ -678,10 +668,12 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
     TextWatcher emailWatcher = new TextWatcher() {
 
         @Override
-        public void onTextChanged(CharSequence ss, int start, int before, int count) {}
+        public void onTextChanged(CharSequence ss, int start, int before, int count) {
+        }
 
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
         public void afterTextChanged(Editable ss) {
@@ -691,7 +683,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                 continueButton.setEnabled(false);
             } else {
                 MainActivity.broadcastManager.sendBroadcast(new Intent("event")
-                                .putExtra("contactInfoUpdate", ""));
+                        .putExtra("contactInfoUpdate", ""));
             }
         }
     };
@@ -735,14 +727,12 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
             try {
                 JSONArray arr = Constants.serverInfo.getJSONArray("vendors");
-                for (int i=0 ; i<arr.length() ; i++) {
-                    JSONObject res =  (JSONObject) arr.get(i);
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject res = (JSONObject) arr.get(i);
                     if (Constants.restaurantIdx == res.getInt("vendor_id")) {
                         drinkChoice = res.getJSONObject("addons")
                                 .getJSONObject("0").getJSONObject("choices");
-                        //Log.d("PhoneMod", drinkChoice.toString() + "\n");
                         foodChoice = res.getJSONObject("types");
-                        //Log.d("PhoneMod", foodChoice.toString() + "\n");
                     }
                 }
             } catch (Exception e) {
@@ -773,11 +763,36 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         }
     };
 
-    /*********************************** UTIL METHODS *******************************************/
+    /**
+     * ******************************** UTIL METHODS ******************************************
+     */
 
     private void initCreditCard() {
         Constants.token = Constants.prefs.getString("token", null);
         Constants.creditCardLast4 = Constants.prefs.getString("last4", null);
+    }
+
+    private void initLocation() {
+        final double[] location = getGPS();
+
+        Constants.lat = location[0];
+        Constants.lon = location[1];
+
+        ReverseGeocoding geocoding = new ReverseGeocoding();
+        geocoding.getAddress(Constants.lat, Constants.lon);
+
+        if (geocoding.getAddress2().equals("")) {
+            Constants.streetAddress = geocoding.getAddress1();
+        } else {
+            Constants.streetAddress = geocoding.getAddress1()
+                    + ", " + geocoding.getAddress2();
+        }
+        Constants.cityAddress = geocoding.getCity() + ", " + geocoding.getState() +
+                " - " + geocoding.getPIN();
+
+        MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                .putExtra("addressUpdate", ""));
+
     }
 
     private void addShortcutToHomescreen() {
@@ -829,7 +844,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         return gps;
     }
 
-    public String getEmail () {
+    public String getEmail() {
         Pattern emailPattern = Patterns.EMAIL_ADDRESS;
         Account[] accounts = AccountManager.get(this).getAccounts();
         for (Account account : accounts) {
@@ -840,7 +855,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         return "";
     }
 
-    public String getPhoneNumber () {
+    public String getPhoneNumber() {
         try {
             TelephonyManager tMgr = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
             return tMgr.getLine1Number();
