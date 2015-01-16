@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.snacktime.devasia.snacktimedelivery.Constants;
 import com.snacktime.devasia.snacktimedelivery.MainActivity;
-import com.stripe.android.model.Card;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -15,7 +14,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
-import org.apache.http.protocol.HTTP;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -38,8 +36,7 @@ public class TokenFetcher implements Runnable {
     public void run() {
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        //HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/test_token"); // Test token
-        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/prod_token"); // Prod token
+        HttpPost httppost = new HttpPost(Constants.tokenTestUrl);
         httppost.setHeader("Content-type", "application/x-www-form-urlencoded");
 
         InputStream inputStream = null;

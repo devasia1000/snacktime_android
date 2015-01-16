@@ -3,6 +3,7 @@ package com.snacktime.devasia.snacktimedelivery.network;
 import android.content.Intent;
 import android.util.Log;
 
+import com.snacktime.devasia.snacktimedelivery.Constants;
 import com.snacktime.devasia.snacktimedelivery.MainActivity;
 
 import org.apache.http.HttpEntity;
@@ -31,8 +32,7 @@ public class OrderSender implements Runnable {
     public void run() {
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        //HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/test_charge"); // Test URL
-        HttpPost httppost = new HttpPost("https://dry-plains-7644.herokuapp.com/prod_charge"); // Production URL
+        HttpPost httppost = new HttpPost(Constants.chargeTestUrl);
         httppost.setHeader("Content-type", "application/json");
 
         InputStream inputStream = null;
