@@ -36,20 +36,13 @@ public class TokenFetcher implements Runnable {
     public void run() {
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpPost httppost = new HttpPost(Constants.tokenTestUrl);
+        HttpPost httppost = new HttpPost(Constants.tokenProdUrl);
         httppost.setHeader("Content-type", "application/x-www-form-urlencoded");
 
         InputStream inputStream = null;
 
         try {
             httppost.setEntity(new StringEntity("stripeToken=" + stripeToken + "&email=" + email));
-
-            Header[] head = httppost.getAllHeaders();
-            for (Header h : head) {
-                Log.d("PhoneMod", h.toString() + "\n");
-            }
-            Log.d("PhoneMod", "stripeToken=" + stripeToken + "&email=" + email + "\n");
-
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
 

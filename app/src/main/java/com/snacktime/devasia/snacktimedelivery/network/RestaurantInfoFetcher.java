@@ -28,7 +28,7 @@ public class RestaurantInfoFetcher extends Thread {
 
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpPost httppost = new HttpPost(Constants.restaurantInfoTestUrl);
+        HttpPost httppost = new HttpPost(Constants.restaurantInfoProdUrl);
 
         httppost.setHeader("Content-type", "application/json");
 

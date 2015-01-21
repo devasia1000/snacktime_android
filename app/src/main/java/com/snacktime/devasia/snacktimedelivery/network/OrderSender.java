@@ -32,7 +32,7 @@ public class OrderSender implements Runnable {
     public void run() {
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpPost httppost = new HttpPost(Constants.chargeTestUrl);
+        HttpPost httppost = new HttpPost(Constants.chargeProdUrl);
         httppost.setHeader("Content-type", "application/json");
 
         InputStream inputStream = null;
@@ -63,11 +63,15 @@ public class OrderSender implements Runnable {
             Log.d("PhoneMod", "\n\n" + result + "\n\n");
         } catch (Exception e) {
             Log.d("PhoneMod", e.toString());
+            MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                    .putExtra("orderUpdate", 0));
         } finally {
             try {
                 if (inputStream != null) inputStream.close();
             } catch (Exception e) {
                 Log.d("PhoneMod", e.toString());
+                MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                        .putExtra("orderUpdate", 0));
             }
         }
     }
