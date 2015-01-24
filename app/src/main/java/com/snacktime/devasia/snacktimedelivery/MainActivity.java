@@ -189,7 +189,6 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
                 TextView paymentText = (TextView) findViewById(R.id.paymentText);
                 paymentText.setVisibility(View.VISIBLE);
 
-                Constants.price = (double) mCardArrayAdapter.getCount() * 9.95;
                 BigDecimal roundedPrice = new BigDecimal(Constants.price)
                         .setScale(2, BigDecimal.ROUND_HALF_UP);
                 paymentText.setText("Total Cost: $" + roundedPrice.toString() +
@@ -455,7 +454,6 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         TextView paymentText = (TextView) findViewById(R.id.paymentText);
 
         if (Constants.token != null && Constants.creditCardLast4 != null) {
-            Constants.price = (double) mCardArrayAdapter.getCount() * 9.95;
             BigDecimal roundedPrice = new BigDecimal(Constants.price)
                     .setScale(2, BigDecimal.ROUND_HALF_UP);
             paymentText.setText("Total Cost: $" + roundedPrice.toString() +

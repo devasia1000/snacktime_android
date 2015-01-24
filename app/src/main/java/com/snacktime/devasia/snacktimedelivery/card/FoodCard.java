@@ -158,6 +158,7 @@ public class FoodCard extends Card {
                         title.setText(flavorName);
                         ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
 
@@ -177,6 +178,7 @@ public class FoodCard extends Card {
                         title.setText(flavorName);
                         ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
 
@@ -196,6 +198,7 @@ public class FoodCard extends Card {
                         title.setText(flavorName);
                         ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
 
@@ -215,6 +218,7 @@ public class FoodCard extends Card {
                         title.setText(flavorName);
                         ingredientText.setText(ingredients);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
 
@@ -229,6 +233,7 @@ public class FoodCard extends Card {
                         }
                         title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
 
@@ -243,6 +248,7 @@ public class FoodCard extends Card {
                         }
                         title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
 
@@ -257,6 +263,7 @@ public class FoodCard extends Card {
                         }
                         title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
 
@@ -271,6 +278,7 @@ public class FoodCard extends Card {
                         }
                         title.setText(flavorName);
                         MainActivity.mCardArrayAdapter.notifyDataSetChanged();
+                        MainActivity.broadcastManager.sendBroadcast(new Intent("event").putExtra("priceUpdate", ""));
                     }
                 });
     }
