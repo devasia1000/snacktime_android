@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item android:id="@+id/action_add"
-        android:icon="@drawable/ic_action_add3"
+        android:icon="@drawable/ic_action_add"
         android:title="Add"
         android:showAsAction="always"
         android:visible="false" />
