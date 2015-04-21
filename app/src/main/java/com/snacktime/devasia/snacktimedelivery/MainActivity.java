@@ -68,7 +68,7 @@ import it.gmariotti.cardslib.library.view.CardGridView;
 import it.gmariotti.cardslib.library.view.CardListView;
 
 
-public class MainActivity extends Activity implements OnMapReadyCallback {
+public class MainActivity extends Activity /*implements OnMapReadyCallback*/ {
 
     public enum ViewTracker {
         APP_TRACKER, // Tracker used only in this app.
@@ -76,8 +76,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
     private HashMap<ViewTracker, Tracker> mTrackers = new HashMap<>();
 
-    private Marker pinMarker;
-    private GoogleMap map;
+    //private Marker pinMarker;
+    //private GoogleMap map;
 
     public static CardArrayAdapter mCardArrayAdapter;
     public static LocalBroadcastManager broadcastManager;
@@ -113,8 +113,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         Constants.phoneNumber = getPhoneNumber();
         Constants.email = getEmail();
 
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        /*MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);*/
 
         new Thread(new Runnable() {
             public void run() {
@@ -167,8 +167,8 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
                 double[] location = intent.getDoubleArrayExtra("pinUpdate");
                 final LatLng newLoc = new LatLng(location[0], location[1]);
-                pinMarker.setPosition(newLoc);
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(newLoc, 17));
+                //pinMarker.setPosition(newLoc);
+                //map.animateCamera(CameraUpdateFactory.newLatLngZoom(newLoc, 17));
 
                 Constants.lat = location[0];
                 Constants.lon = location[1];
@@ -288,7 +288,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
         }
     };
 
-    @Override
+    /*@Override
     public void onMapReady(GoogleMap map) {
         this.map = map;
 
@@ -310,7 +310,7 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
 
         addr1Text.addTextChangedListener(addr1Watcher);
         addr2Text.addTextChangedListener(addr2Watcher);
-    }
+    }*/
 
     public void getRestaurantInfo(View v) {
         flipper.showNext();
@@ -785,8 +785,13 @@ public class MainActivity extends Activity implements OnMapReadyCallback {
             Constants.streetAddress = geocoding.getAddress1()
                     + ", " + geocoding.getAddress2();
         }
-        Constants.cityAddress = geocoding.getCity() + ", " + geocoding.getState() +
-                " - " + geocoding.getPIN();
+
+        if (geocoding.getCity().equals("") || geocoding.getState().equals("")) {
+            Constants.cityAddress = "";
+        } else {
+            Constants.cityAddress = geocoding.getCity() + ", " + geocoding.getState() +
+                    " - " + geocoding.getPIN();
+        }
 
         MainActivity.broadcastManager.sendBroadcast(new Intent("event")
                 .putExtra("addressUpdate", ""));

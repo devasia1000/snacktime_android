@@ -12,7 +12,7 @@
         android:layout_height="fill_parent"
         android:background="@color/backgroundColor">
 
-        <LinearLayout
+        <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
@@ -67,7 +67,7 @@
                 android:textColor="@color/white"
                 android:textSize="14dp" />
 
-        </LinearLayout>
+        </LinearLayout> -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,12 +89,21 @@
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
-            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="13"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Please enter delivery address"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <!-- <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.MapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="48" />
+                android:layout_weight="48" /> -->
 
             <ImageView
                 android:layout_width="match_parent"
@@ -161,6 +170,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="15"/>
 
             <Button
                 android:id="@+id/addressContinueButton"

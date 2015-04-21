@@ -25,11 +25,11 @@
             <!-- android:value="AIzaSyCoHgf9fh7Z6o7R0XzXLEXijOVCuQwYcHU"/> --> <!-- Debug key -->
             <!--android:value="AIzaSyAij8v8gSdDaJpP7Qa5NFLI1VW11zbPoKE"/>--> <!-- secret key -->
 
-        <meta-data
+        <!-- <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <uses-library android:name="com.google.android.maps"/>
+        <uses-library android:name="com.google.android.maps"/> -->
 
     </application>
 

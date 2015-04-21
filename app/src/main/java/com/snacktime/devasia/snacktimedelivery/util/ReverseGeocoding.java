@@ -1,6 +1,7 @@
 package com.snacktime.devasia.snacktimedelivery.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.snacktime.devasia.snacktimedelivery.network.JSONParser;
 
@@ -32,13 +33,15 @@ public class ReverseGeocoding {
                 JSONObject zero = Results.getJSONObject(0);
                 JSONArray address_components = zero.getJSONArray("address_components");
 
+                Log.d("PhoneMod", zero.toString());
+
                 for (int i = 0; i < address_components.length(); i++) {
                     JSONObject zero2 = address_components.getJSONObject(i);
                     String long_name = zero2.getString("long_name");
                     JSONArray mtypes = zero2.getJSONArray("types");
                     String Type = mtypes.getString(0);
 
-                    if (TextUtils.isEmpty(long_name) == false || !long_name.equals(null) || long_name.length() > 0 || long_name != "") {
+                    if (TextUtils.isEmpty(long_name) == false || !long_name.equals(null) || long_name.length() > 0 || !long_name.equals("")) {
                         if (Type.equalsIgnoreCase("street_number")) {
                             Address1 = long_name + " ";
                         } else if (Type.equalsIgnoreCase("route")) {
