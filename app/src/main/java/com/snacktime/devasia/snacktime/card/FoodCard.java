@@ -1,6 +1,5 @@
-package com.snacktime.devasia.snacktimedelivery.card;
+package com.snacktime.devasia.snacktime.card;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -10,13 +9,12 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.snacktime.devasia.snacktimedelivery.Constants;
-import com.snacktime.devasia.snacktimedelivery.MainActivity;
-import com.snacktime.devasia.snacktimedelivery.R;
+import com.snacktime.devasia.snacktime.Constants;
+import com.snacktime.devasia.snacktime.MainActivity;
+import com.snacktime.devasia.snacktime.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import it.gmariotti.cardslib.library.internal.Card;
 

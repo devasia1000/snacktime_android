@@ -1,10 +1,10 @@
-package com.snacktime.devasia.snacktimedelivery.network;
+package com.snacktime.devasia.snacktime.network;
 
 import android.content.Intent;
 import android.util.Log;
 
-import com.snacktime.devasia.snacktimedelivery.Constants;
-import com.snacktime.devasia.snacktimedelivery.MainActivity;
+import com.snacktime.devasia.snacktime.Constants;
+import com.snacktime.devasia.snacktime.MainActivity;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,7 +13,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.protocol.HTTP;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;

@@ -1,4 +1,4 @@
-package com.snacktime.devasia.snacktimedelivery;
+package com.snacktime.devasia.snacktime;
 
 /**
  * Created by devasia on 12/22/14.
@@ -6,11 +6,7 @@ package com.snacktime.devasia.snacktimedelivery;
 
 import android.content.SharedPreferences;
 
-import com.stripe.android.model.Card;
-
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class Constants {
 

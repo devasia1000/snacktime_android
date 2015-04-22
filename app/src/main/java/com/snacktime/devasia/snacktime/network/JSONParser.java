@@ -1,4 +1,4 @@
-package com.snacktime.devasia.snacktimedelivery.network;
+package com.snacktime.devasia.snacktime.network;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.snacktime.devasia.snacktimedelivery.util;
+package com.snacktime.devasia.snacktime.util;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

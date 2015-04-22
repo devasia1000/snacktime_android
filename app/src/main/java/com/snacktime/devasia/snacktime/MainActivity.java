@@ -1,4 +1,4 @@
-package com.snacktime.devasia.snacktimedelivery;
+package com.snacktime.devasia.snacktime;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -34,25 +34,17 @@ import android.widget.ViewFlipper;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.snacktime.devasia.snacktimedelivery.card.CardListActivity;
-import com.snacktime.devasia.snacktimedelivery.card.FoodCard;
-import com.snacktime.devasia.snacktimedelivery.card.RestaurantCard;
-import com.snacktime.devasia.snacktimedelivery.dialog.PaymentEditDialog;
-import com.snacktime.devasia.snacktimedelivery.map.MarkerDragManager;
-import com.snacktime.devasia.snacktimedelivery.network.RestaurantInfoFetcher;
-import com.snacktime.devasia.snacktimedelivery.util.Geocoding;
-import com.snacktime.devasia.snacktimedelivery.util.ReverseGeocoding;
-import com.snacktime.devasia.snacktimedelivery.network.OrderSender;
+import com.snacktime.devasia.snacktime.card.CardListActivity;
+import com.snacktime.devasia.snacktime.card.FoodCard;
+import com.snacktime.devasia.snacktime.card.RestaurantCard;
+import com.snacktime.devasia.snacktime.dialog.PaymentEditDialog;
+import com.snacktime.devasia.snacktime.network.RestaurantInfoFetcher;
+import com.snacktime.devasia.snacktime.util.Geocoding;
+import com.snacktime.devasia.snacktime.util.ReverseGeocoding;
+import com.snacktime.devasia.snacktime.network.OrderSender;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
@@ -99,7 +91,7 @@ public class MainActivity extends Activity /*implements OnMapReadyCallback*/ {
         broadcastManager.registerReceiver(mMessageReceiver, new IntentFilter("event"));
 
         // Init shared prefs
-        Constants.prefs = getSharedPreferences("com.devasia.snacktime.snacktimedelivery",
+        Constants.prefs = getSharedPreferences("com.devasia.snacktime.snacktime",
                 Context.MODE_PRIVATE);
 
         super.onCreate(savedInstanceState);
@@ -688,6 +680,12 @@ public class MainActivity extends Activity /*implements OnMapReadyCallback*/ {
 
     public void onContinueButtonPressed(View v) {
         flipper.showNext();
+
+        final TextView addr1Text = (TextView) findViewById(R.id.addressInputStreet);
+        final TextView addr2Text = (TextView) findViewById(R.id.addressInputCity);
+
+        addr1Text.addTextChangedListener(addr1Watcher);
+        addr2Text.addTextChangedListener(addr2Watcher);
     }
 
     public void onBackPressed() {

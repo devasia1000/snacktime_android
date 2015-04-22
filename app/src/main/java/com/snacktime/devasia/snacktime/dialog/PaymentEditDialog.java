@@ -1,4 +1,4 @@
-package com.snacktime.devasia.snacktimedelivery.dialog;
+package com.snacktime.devasia.snacktime.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -7,23 +7,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.snacktime.devasia.snacktimedelivery.Constants;
-import com.snacktime.devasia.snacktimedelivery.MainActivity;
-import com.snacktime.devasia.snacktimedelivery.R;
-import com.snacktime.devasia.snacktimedelivery.network.TokenFetcher;
+import com.snacktime.devasia.snacktime.Constants;
+import com.snacktime.devasia.snacktime.MainActivity;
+import com.snacktime.devasia.snacktime.R;
+import com.snacktime.devasia.snacktime.network.TokenFetcher;
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
 import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
 import com.stripe.exception.AuthenticationException;
-
-import org.json.JSONException;
 
 /**
  * Created by devasia on 12/23/14.

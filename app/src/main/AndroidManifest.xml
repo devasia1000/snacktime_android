@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.snacktime.devasia.snacktimedelivery" >
+    package="com.snacktime.devasia.snacktime" >
 
     <application
 
@@ -10,7 +10,7 @@
         android:theme="@style/SnacktimeTheme" >
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.snacktime.devasia.snacktime.MainActivity"
             android:label="Snacktime"
             android:screenOrientation="portrait" >
             <intent-filter>

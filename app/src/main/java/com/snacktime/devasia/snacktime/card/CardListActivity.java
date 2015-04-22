@@ -1,11 +1,10 @@
-package com.snacktime.devasia.snacktimedelivery.card;
+package com.snacktime.devasia.snacktime.card;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-import com.snacktime.devasia.snacktimedelivery.R;
+import com.snacktime.devasia.snacktime.R;
 
 /**
  * Created by devasia on 12/22/14.

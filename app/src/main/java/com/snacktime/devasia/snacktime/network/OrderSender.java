@@ -1,19 +1,18 @@
-package com.snacktime.devasia.snacktimedelivery.network;
+package com.snacktime.devasia.snacktime.network;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.snacktime.devasia.snacktimedelivery.Constants;
-import com.snacktime.devasia.snacktimedelivery.MainActivity;
+import com.snacktime.devasia.snacktime.Constants;
+import com.snacktime.devasia.snacktime.MainActivity;
 
-import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.protocol.HTTP;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -22,27 +21,29 @@ import java.io.InputStreamReader;
 /**
  * Created by devasia on 12/31/14.
  */
-public class TokenFetcher implements Runnable {
+public class OrderSender implements Runnable {
 
-    String stripeToken;
-    String email;
+    String json;
 
-    public TokenFetcher(String stripeToken, String email) {
-        this.stripeToken = stripeToken;
-        this.email = email;
+    public OrderSender(String json) {
+        this.json = json;
     }
 
-    @Override
     public void run() {
         // Fetch restaurant data from server
         DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-        HttpPost httppost = new HttpPost(Constants.tokenProdUrl);
-        httppost.setHeader("Content-type", "application/x-www-form-urlencoded");
+        HttpPost httppost = new HttpPost(Constants.chargeProdUrl);
+        httppost.setHeader("Content-type", "application/json");
 
         InputStream inputStream = null;
+        String result;
 
         try {
-            httppost.setEntity(new StringEntity("stripeToken=" + stripeToken + "&email=" + email));
+
+            Log.d("PhoneMod", this.json);
+
+            httppost.setEntity(new StringEntity(json, HTTP.UTF_8));
+
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
 
@@ -50,34 +51,27 @@ public class TokenFetcher implements Runnable {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
             StringBuilder sb = new StringBuilder();
 
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
             }
-
-            Constants.token = sb.toString().replace("\n", "").trim();
-
-            if (Constants.token.length() < 500) {
-                SharedPreferences.Editor editor = Constants.prefs.edit();
-                editor.putString("token", Constants.token);
-                editor.commit();
-            } else {
-                SharedPreferences.Editor editor = Constants.prefs.edit();
-                editor.remove("token");
-                editor.remove("last4");
-                editor.commit();
-            }
+            result = sb.toString();
 
             MainActivity.broadcastManager.sendBroadcast(new Intent("event")
-                    .putExtra("paymentUpdate", ""));
+                    .putExtra("orderUpdate", Integer.parseInt(result.trim())));
 
+            Log.d("PhoneMod", "\n\n" + result + "\n\n");
         } catch (Exception e) {
             Log.d("PhoneMod", e.toString());
+            MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                    .putExtra("orderUpdate", 0));
         } finally {
             try {
                 if (inputStream != null) inputStream.close();
             } catch (Exception e) {
                 Log.d("PhoneMod", e.toString());
+                MainActivity.broadcastManager.sendBroadcast(new Intent("event")
+                        .putExtra("orderUpdate", 0));
             }
         }
     }

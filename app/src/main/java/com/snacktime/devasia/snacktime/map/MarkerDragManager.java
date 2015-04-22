@@ -1,13 +1,13 @@
-package com.snacktime.devasia.snacktimedelivery.map;
+package com.snacktime.devasia.snacktime.map;
 
 import android.content.Intent;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.snacktime.devasia.snacktimedelivery.Constants;
-import com.snacktime.devasia.snacktimedelivery.MainActivity;
-import com.snacktime.devasia.snacktimedelivery.util.ReverseGeocoding;
+import com.snacktime.devasia.snacktime.Constants;
+import com.snacktime.devasia.snacktime.MainActivity;
+import com.snacktime.devasia.snacktime.util.ReverseGeocoding;
 
 /**
  * Created by devasia on 1/2/15.

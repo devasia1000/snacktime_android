@@ -1,4 +1,4 @@
-package com.snacktime.devasia.snacktimedelivery.util;
+package com.snacktime.devasia.snacktime.util;
 
 /**
  * Created by devasia on 12/23/14.

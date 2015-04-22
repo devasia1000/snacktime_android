@@ -1,9 +1,9 @@
-package com.snacktime.devasia.snacktimedelivery.util;
+package com.snacktime.devasia.snacktime.util;
 
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.snacktime.devasia.snacktimedelivery.network.JSONParser;
+import com.snacktime.devasia.snacktime.network.JSONParser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
